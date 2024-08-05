@@ -14,7 +14,7 @@ server.use(middlewares)
 server.use(router)
 
 server.post('/login', loginController)
-// server.use(/^(?!\/login).*$/, authMiddleware)
+server.use(/^(?!\/login).*$/, authMiddleware)
 
 server.listen(3001, () => {
   console.log('JSON Server is running on http://localhost:3001')
