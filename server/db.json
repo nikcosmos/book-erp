@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "admin",
+      "password": "admin",
+      "role": "admin"
+    }
+  ],
+  "books": [
+    {
+      "id": 1,
+      "title": "Book Title",
+      "author": "Book author",
+      "description": "Book d",
+      "data": "10-2010-12"
+    }
+  ]
+}
