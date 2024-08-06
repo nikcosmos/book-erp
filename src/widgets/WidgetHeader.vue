@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ROUTE } from '@/shared/routes'
+import { Route } from '@/shared/routes'
 import UiContainer from '@/shared/ui/UiContainer.vue'
 import { RouterLink } from 'vue-router'
 </script>
@@ -8,9 +8,9 @@ import { RouterLink } from 'vue-router'
   <header class="header">
     <UiContainer>
       <div class="header__content">
-        <RouterLink :to="{ path: ROUTE.LOGIN }">Login</RouterLink>
-        <RouterLink :to="{ path: ROUTE.BOOKS }">Books</RouterLink>
-        <RouterLink :to="{ path: ROUTE.USERS }">Users</RouterLink>
+        <RouterLink :to="{ path: Route.LOGIN }">Login</RouterLink>
+        <RouterLink :to="{ path: Route.BOOKS }">Books</RouterLink>
+        <RouterLink :to="{ path: Route.USERS }">Users</RouterLink>
       </div>
     </UiContainer>
   </header>
