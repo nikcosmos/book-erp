@@ -1,4 +1,5 @@
-import { verifyToken } from './utils.js'
+import jwt from 'jsonwebtoken'
+import { SECRET_KEY } from '../config.js'
 
 const authMiddleware = (req, res, next) => {
   const authHeader = req.headers.authorization
@@ -24,6 +25,10 @@ const authMiddleware = (req, res, next) => {
     const message = 'Token is not valid'
     res.status(status).json({ status, message })
   }
+}
+
+function verifyToken(token) {
+  return jwt.verify(token, SECRET_KEY, (err, decode) => (decode !== undefined ? decode : err))
 }
 
 export default authMiddleware
