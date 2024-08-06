@@ -7,7 +7,9 @@ const userInfoController = (req, res) => {
   const token = authHeader.split(' ')[1]
 
   const decodeData = jwt.decode(token, SECRET_KEY)
+
   const userInfo = getInfoByUser(decodeData)
+  delete userInfo.password
 
   res.status(200).json(userInfo)
 }
