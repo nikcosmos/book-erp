@@ -49,4 +49,10 @@ button {
 
 a {
   text-decoration: none;
+  color: inherit;
+}
+
+a:focus {
+  text-decoration: none;
+  outline: none;
 }
