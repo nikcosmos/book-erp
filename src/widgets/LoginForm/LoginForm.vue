@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { Route } from '@/shared/routes'
 import { loginService } from '@/shared/services/auth/api'
+import { useAuthStore } from '@/shared/store/auth'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -9,10 +10,12 @@ const router = useRouter()
 const login = ref<string>('admin')
 const password = ref<string>('admin')
 
+const { setIsAuth } = useAuthStore()
 async function submitLogin() {
   try {
     const res = await loginService(login.value, password.value)
     localStorage.setItem('access', res.access)
+    setIsAuth(true)
     router.push(Route.BOOKS)
   } catch (error) {
     console.log('Login Error')
