@@ -1,9 +1,10 @@
 <script lang="ts" setup>
 import UiContainer from '@/shared/ui/UiContainer.vue'
+import LoginForm from '@/widgets/LoginForm/LoginForm.vue'
 </script>
 
 <template>
-  <UiContainer>Login Page</UiContainer>
+  <UiContainer>
+    <LoginForm />
+  </UiContainer>
 </template>
-
-<style></style>
