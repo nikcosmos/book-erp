@@ -1,4 +1,5 @@
 import type { UserRole } from '@/shared/consts/user'
+import { LocationQueryValue } from 'vue-router'
 
 export interface BookItem {
   id: number
@@ -10,3 +11,8 @@ export interface BookItem {
 }
 
 export type BookItemAdd = Omit<BookItem, 'id'>
+
+export interface bookQueryType {
+  search: LocationQueryValue | undefined
+  sort: LocationQueryValue | undefined
+}

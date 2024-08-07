@@ -6,7 +6,8 @@ import {
 } from '@/shared/services/book/api'
 import { BookItem, BookItemAdd } from '@/shared/services/book/model'
 import { defineStore } from 'pinia'
-import { Ref, ref } from 'vue'
+import { Ref, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 
 interface BookStore {
   bookList: Ref<BookItem[]>
@@ -17,11 +18,16 @@ interface BookStore {
 }
 
 export const useBookStore = defineStore('book', (): BookStore => {
+  const route = useRoute()
   const bookList = ref<BookItem[]>([])
 
   async function getList() {
+    const query = {
+      search: route.query.search ? String(route.query.search) : undefined,
+      sort: route.query.sort ? String(route.query.sort) : undefined
+    }
     try {
-      const res = await bookListService()
+      const res = await bookListService(query)
       bookList.value = res
     } catch (error) {
       console.log('Get Book List Error')
@@ -56,6 +62,8 @@ export const useBookStore = defineStore('book', (): BookStore => {
       console.log('Edit Book Error')
     }
   }
+
+  watch(() => [route.query.search, route.query.sort], getList)
 
   return { bookList, getList, addBook, deleteBook, editBook }
 })

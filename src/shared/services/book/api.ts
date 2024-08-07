@@ -1,8 +1,13 @@
 import $api from '@/shared/api'
-import type { BookItem, BookItemAdd } from './model'
+import type { BookItem, BookItemAdd, bookQueryType } from './model'
 
-export const bookListService = (): Promise<BookItem[]> => {
-  return $api('/books')
+export const bookListService = (query: bookQueryType): Promise<BookItem[]> => {
+  return $api('/books', {
+    query: {
+      q: query.search,
+      _sort: query.sort
+    }
+  })
 }
 
 export const addBookService = ({
