@@ -7,7 +7,7 @@ import { useAuthStore } from '@/shared/store/auth'
 import { storeToRefs } from 'pinia'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: Route.LOGIN,
@@ -27,7 +27,7 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
   const authStore = useAuthStore()
   const { isAuth } = storeToRefs(authStore)
 
