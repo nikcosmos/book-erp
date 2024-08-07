@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import WidgetFooter from '@/widgets/WidgetFooter.vue'
 import WidgetHeader from '@/widgets/WidgetHeader.vue'
 </script>
 
@@ -9,7 +8,6 @@ import WidgetHeader from '@/widgets/WidgetHeader.vue'
     <main class="main">
       <slot />
     </main>
-    <WidgetFooter />
   </div>
 </template>
 
