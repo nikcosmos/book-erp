@@ -1,7 +1,7 @@
 import $api from '@/shared/api'
-import type { BookItem, BookItemAdd, BookList } from './model'
+import type { BookItem, BookItemAdd } from './model'
 
-export const bookListService = (): Promise<BookList> => {
+export const bookListService = (): Promise<BookItem[]> => {
   return $api('/books')
 }
 
@@ -11,7 +11,7 @@ export const addBookService = ({
   description,
   data,
   creator
-}: BookItemAdd): Promise<BookList> => {
+}: BookItemAdd): Promise<BookItem> => {
   return $api('/books', {
     method: 'POST',
     body: {
@@ -24,7 +24,7 @@ export const addBookService = ({
   })
 }
 
-export const deleteBookService = (id: number): Promise<BookList> => {
+export const deleteBookService = (id: number): Promise<void> => {
   return $api(`/books/${id}`, {
     method: 'DELETE'
   })
@@ -37,7 +37,7 @@ export const updateBookService = ({
   description,
   data,
   creator
-}: BookItem): Promise<BookList> => {
+}: BookItem): Promise<BookItem> => {
   return $api(`/books/${id}`, {
     method: 'PUT',
     body: {
