@@ -1,6 +1,6 @@
 <script lang="ts" setup>
+import LoginForm from '@/feature/auth/ui/LoginForm.vue'
 import UiContainer from '@/shared/ui/UiContainer.vue'
-import LoginForm from '@/widgets/LoginForm.vue'
 </script>
 
 <template>
