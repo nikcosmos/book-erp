@@ -10,3 +10,5 @@ export interface BookItem {
   data: string
   creator: UserRole
 }
+
+export type BookItemAdd = Omit<BookItem, 'id'>
