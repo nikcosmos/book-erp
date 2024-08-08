@@ -2,8 +2,7 @@
 import { Route } from '@/shared/routes'
 import { loginService } from '@/shared/services/auth/api'
 import { useAuthStore } from '@/shared/store/auth'
-import UIButton from '@/shared/ui/UIButton.vue'
-import UIInput from '@/shared/ui/UIInput.vue'
+import { UIButton, UIInput } from '@/shared/ui'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
