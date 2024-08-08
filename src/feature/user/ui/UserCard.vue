@@ -3,6 +3,7 @@ import type { UserItem } from '@/shared/services/user/model'
 import UserEdit from './UserEdit.vue'
 import { useUserStore } from '../store'
 import useUserPerms from '../perms'
+import { UIButton } from '@/shared/ui'
 
 const props = defineProps<{ user: UserItem }>()
 
@@ -14,18 +15,18 @@ const { isCanEdit, isCanDelete } = useUserPerms()
 <template>
   <div class="card">
     <div class="card__content">
-      <h3>{{ props.user.login }}</h3>
-      <span>{{ props.user.role }}</span>
+      <h3>Login: {{ props.user.login }}</h3>
+      <span>Role: {{ props.user.role }}</span>
     </div>
     <div class="card__actions">
       <UserEdit v-if="isCanEdit(props.user.role)" :user="props.user" />
-      <button
+      <UIButton
         v-if="isCanDelete(props.user.role)"
         type="button"
         @click="userStore.deleteUser(props.user.id)"
       >
         Delete
-      </button>
+      </UIButton>
     </div>
   </div>
 </template>
@@ -33,8 +34,8 @@ const { isCanEdit, isCanDelete } = useUserPerms()
 <style lang="scss" scoped>
 .card {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
   border: 1px solid teal;
   border-radius: 10px;
@@ -42,12 +43,15 @@ const { isCanEdit, isCanDelete } = useUserPerms()
   &__content {
     display: flex;
     gap: 12px;
-    align-items: center;
+    flex-direction: column;
   }
 
   &__actions {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    @media (max-width: 767.98px) {
+      flex-direction: column;
+    }
   }
 }
 </style>

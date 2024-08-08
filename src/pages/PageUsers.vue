@@ -7,7 +7,10 @@ import UiContainer from '@/shared/ui/UiContainer.vue'
 <template>
   <UiContainer>
     <div class="user-page">
-      <UserAddForm />
+      <div class="user-page__head">
+        <h1 class="user-page__title">Users</h1>
+        <UserAddForm />
+      </div>
       <UserList />
     </div>
   </UiContainer>
@@ -18,5 +21,15 @@ import UiContainer from '@/shared/ui/UiContainer.vue'
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 24px;
+  }
 }
 </style>
