@@ -2,8 +2,8 @@
 import { UserRole } from '@/shared/consts/user'
 import { Route } from '@/shared/routes'
 import { useAuthStore } from '@/shared/store/auth'
+import { UIButton, UIChip } from '@/shared/ui'
 import UiContainer from '@/shared/ui/UiContainer.vue'
-import { RouterLink } from 'vue-router'
 
 const authStore = useAuthStore()
 </script>
@@ -13,15 +13,14 @@ const authStore = useAuthStore()
     <UiContainer>
       <div v-if="authStore.isAuth" class="header__content">
         <div class="header__link">
-          <RouterLink :to="{ path: Route.BOOKS }">Books</RouterLink>
-          <RouterLink v-if="authStore.userInfo?.role === UserRole.ADMIN" :to="{ path: Route.USERS }"
-            >Users</RouterLink
-          >
+          <UIButton :to="{ path: Route.BOOKS }"> Books </UIButton>
+          <UIButton v-if="authStore.userInfo?.role === UserRole.ADMIN" :to="{ path: Route.USERS }">
+            Users
+          </UIButton>
         </div>
         <div class="header__action">
-          <div>Hello,{{ authStore.userInfo?.login }}</div>
-          <div>Role:{{ authStore.userInfo?.role }}</div>
-          <button type="button" @click="authStore.signOut()">Sign Out</button>
+          <UIChip>{{ authStore.userInfo?.role }}</UIChip>
+          <UIButton type="button" @click="authStore.signOut()">Sign Out</UIButton>
         </div>
       </div>
     </UiContainer>
@@ -31,20 +30,27 @@ const authStore = useAuthStore()
 <style lang="scss" scoped>
 .header {
   padding: 20px 0px;
-
   &__content {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
 
   &__link {
     display: flex;
-    gap: 12px;
+    align-items: center;
+    gap: 8px;
+    .router-link-active {
+      color: var(--black);
+      box-shadow: 0 0 5px var(--primary);
+    }
   }
 
   &__action {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 8px;
   }
 }
 </style>
