@@ -4,9 +4,19 @@
 
 ## Require: `node >= 20`
 
-```
+### Dev
+
+```bash
 npm i
 npm run dev
+```
+
+### Build
+
+```bash
+npm i
+npm run build
+npm run preview
 ```
 
 Frontend = `http://localhost:3000`
