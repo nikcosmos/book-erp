@@ -38,8 +38,12 @@ function resetForm() {
 
 <template>
   <UIButton type="button" @click="isOpen = true">Add Book</UIButton>
-  <UIModal :is-open="isOpen" @onClose="isOpen = false">
-    <form class="form" @submit.prevent="submitHandler">
+  <UIModal class="add-modal" :is-open="isOpen" @onClose="isOpen = false">
+    <div class="add-modal__top">
+      <h4 class="add-modal__top-title">Add Book</h4>
+      <UIButton type="button" @click="isOpen = false">Close</UIButton>
+    </div>
+    <form class="add-modal__form" @submit.prevent="submitHandler">
       <UIInput type="text" name="title" placeholder="Name" v-model="title" />
       <UIInput type="text" name="author" placeholder="Author" v-model="author" />
       <UIInput type="date" name="data" placeholder="Data" v-model="data" />
@@ -50,9 +54,22 @@ function resetForm() {
 </template>
 
 <style lang="scss" scoped>
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.add-modal {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__top-title {
+    font-size: 20px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 }
 </style>
