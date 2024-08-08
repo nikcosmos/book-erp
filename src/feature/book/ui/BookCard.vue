@@ -2,10 +2,13 @@
 import type { BookItem } from '@/shared/services/book/model.ts'
 import { useBookStore } from '../store'
 import BookEdit from './BookEdit.vue'
+import useBookPerms from '../perms'
 
 const props = defineProps<{ book: BookItem }>()
 
 const bookStore = useBookStore()
+
+const { isCanEdit, isCanDelete } = useBookPerms()
 </script>
 
 <template>
@@ -17,8 +20,14 @@ const bookStore = useBookStore()
       <span>{{ props.book.data }}</span>
     </div>
     <div class="card__actions">
-      <BookEdit :book="props.book" />
-      <button type="button" @click="bookStore.deleteBook(props.book.id)">Delete</button>
+      <BookEdit v-if="isCanEdit(props.book.creator)" :book="props.book" />
+      <button
+        v-if="isCanDelete(props.book.creator)"
+        type="button"
+        @click="bookStore.deleteBook(props.book.id)"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </template>
