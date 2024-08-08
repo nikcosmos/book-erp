@@ -13,7 +13,7 @@ const $api = ofetch.create({
   },
   async onResponseError({ response }) {
     if (response.status == 401) {
-      console.log('Auth Error')
+      localStorage.removeItem('access')
     }
   }
 })
