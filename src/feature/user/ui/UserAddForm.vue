@@ -25,6 +25,8 @@ function resetForm() {
   login.value = ''
   password.value = ''
   role.value = UserRole.USER
+
+  isOpen.value = false
 }
 </script>
 
