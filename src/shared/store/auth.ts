@@ -24,7 +24,7 @@ export const useAuthStore = defineStore('user', (): AuthStore => {
     if (!userInfo.value && isAuth.value) {
       try {
         const res = await userInfoService()
-        return res
+        userInfo.value = res
       } catch (error) {
         console.log('UserInfoError')
       }

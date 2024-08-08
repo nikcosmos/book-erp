@@ -7,7 +7,7 @@ import { RouterLink } from 'vue-router'
 
 const authStore = useAuthStore()
 const { signOut } = authStore
-const { isAuth } = storeToRefs(authStore)
+const { isAuth, userInfo } = storeToRefs(authStore)
 </script>
 
 <template>
@@ -19,6 +19,8 @@ const { isAuth } = storeToRefs(authStore)
           <RouterLink :to="{ path: Route.USERS }">Users</RouterLink>
         </div>
         <div class="header__action">
+          <div>Hello,{{ userInfo?.login }}</div>
+          <div>Role:{{ userInfo?.role }}</div>
           <button type="button" @click="signOut">Sign Out</button>
         </div>
       </div>
@@ -41,6 +43,8 @@ const { isAuth } = storeToRefs(authStore)
   }
 
   &__action {
+    display: flex;
+    gap: 10px;
   }
 }
 </style>
