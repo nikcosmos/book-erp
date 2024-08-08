@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { watch } from 'vue'
-import UIButton from './UIButton.vue'
 
 const props = defineProps<{ isOpen: boolean }>()
 defineEmits(['onClose'])
