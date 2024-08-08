@@ -1,8 +1,20 @@
 <script lang="ts" setup>
-const props = defineProps<{
-  isOpen: boolean
-}>()
+import { watch } from 'vue'
+import UIButton from './UIButton.vue'
+
+const props = defineProps<{ isOpen: boolean }>()
 defineEmits(['onClose'])
+
+watch(
+  () => props.isOpen,
+  (isOpen) => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+  }
+)
 </script>
 
 <template>
@@ -48,7 +60,11 @@ defineEmits(['onClose'])
     padding: 30px;
     transform: scale(0);
     transition: all 0.3s ease 0s;
-    background: #eeeeee;
+    background: var(--black);
+    border-radius: 12px;
+    @media (max-width: 767.98px) {
+      padding: 20px 12px;
+    }
     .modal-open & {
       transform: scale(1);
       transition: all 0.3s ease 0s;
