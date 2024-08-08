@@ -36,10 +36,10 @@ function submitHandler() {
       <UIButton type="button" @click="isOpen = false">Close</UIButton>
     </div>
     <form class="edit-modal__form" @submit.prevent="submitHandler">
-      <UIInput type="text" name="title" v-model="title" />
-      <UIInput type="text" name="author" v-model="author" />
-      <UIInput type="date" name="data" v-model="data" />
-      <UITextArea type="text" name="description" v-model="description" />
+      <UIInput required type="text" name="title" v-model="title" />
+      <UIInput required type="text" name="author" v-model="author" />
+      <UIInput required type="date" name="data" v-model="data" />
+      <UITextArea required type="text" name="description" v-model="description" />
       <UIButton type="submit">Edit</UIButton>
     </form>
   </UIModal>

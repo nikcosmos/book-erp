@@ -44,10 +44,10 @@ function resetForm() {
       <UIButton type="button" @click="isOpen = false">Close</UIButton>
     </div>
     <form class="add-modal__form" @submit.prevent="submitHandler">
-      <UIInput type="text" name="title" placeholder="Name" v-model="title" />
-      <UIInput type="text" name="author" placeholder="Author" v-model="author" />
-      <UIInput type="date" name="data" placeholder="Data" v-model="data" />
-      <UITextArea name="description" placeholder="Description" v-model="description" />
+      <UIInput required type="text" name="title" placeholder="Name" v-model="title" />
+      <UIInput required type="text" name="author" placeholder="Author" v-model="author" />
+      <UIInput required type="date" name="data" placeholder="Data" v-model="data" />
+      <UITextArea required name="description" placeholder="Description" v-model="description" />
       <UIButton type="submit">Add</UIButton>
     </form>
   </UIModal>
