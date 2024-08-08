@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import { onMounted } from 'vue'
 import BookCard from './BookCard.vue'
 import { useBookStore } from '../store'
 
 const bookStore = useBookStore()
-
-onMounted(() => !bookStore.bookList.length && bookStore.getList())
 </script>
 
 <template>

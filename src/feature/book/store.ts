@@ -1,3 +1,4 @@
+import { Route } from '@/shared/routes'
 import {
   addBookService,
   bookListService,
@@ -63,7 +64,15 @@ export const useBookStore = defineStore('book', (): BookStore => {
     }
   }
 
-  watch(() => [route.query.search, route.query.sort], getList)
+  watch(
+    [() => route.query.search, () => route.query.sort],
+    () => {
+      if (route.path === Route.BOOKS) getList()
+    },
+    {
+      immediate: true
+    }
+  )
 
   return { bookList, getList, addBook, deleteBook, editBook }
 })
