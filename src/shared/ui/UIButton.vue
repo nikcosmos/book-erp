@@ -1,11 +1,24 @@
+<script setup lang="ts">
+import { defineProps } from 'vue'
+import { RouterLink } from 'vue-router'
+
+interface CustomLinkButtonProps {
+  to?: string | object
+  customProp?: string
+  [key: string]: any
+}
+const props = defineProps<CustomLinkButtonProps>()
+</script>
+
 <template>
-  <button class="button">
+  <component :is="props.to ? RouterLink : 'button'" v-bind="props" class="button">
     <slot />
-  </button>
+  </component>
 </template>
 
 <style lang="scss" scoped>
 .button {
+  text-align: center;
   padding: 8px;
   background: var(--primary);
   border-radius: 8px;
