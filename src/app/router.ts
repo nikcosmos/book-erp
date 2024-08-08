@@ -4,7 +4,7 @@ import PageBooks from '../pages/PageBooks.vue'
 import PageUsers from '@/pages/PageUsers.vue'
 import { Route } from '@/shared/routes'
 import { useAuthStore } from '@/shared/store/auth'
-import { storeToRefs } from 'pinia'
+import { UserRole } from '@/shared/consts/user'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,25 +17,29 @@ const router = createRouter({
     {
       path: Route.BOOKS,
       component: PageBooks,
-      meta: { requiresAuth: true }
+      meta: { auth: true }
     },
     {
       path: Route.USERS,
       component: PageUsers,
-      meta: { requiresAuth: true }
+      meta: { auth: true, admin: true }
     }
   ]
 })
 
 router.beforeEach((to, _, next) => {
   const authStore = useAuthStore()
-  const { isAuth } = storeToRefs(authStore)
 
   if (to.matched.some((record) => record.meta.authPage)) {
-    isAuth.value ? next({ path: Route.BOOKS }) : next()
+    return authStore.isAuth ? next({ path: Route.BOOKS }) : next()
   }
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    isAuth.value ? next() : next({ path: Route.LOGIN })
+
+  if (to.matched.some((record) => record.meta.auth)) {
+    return authStore.isAuth ? next() : next({ path: Route.LOGIN })
+  }
+
+  if (to.matched.some((record) => record.meta.admin)) {
+    return authStore.userInfo?.role === UserRole.ADMIN ? next() : next({ path: Route.BOOKS })
   }
 })
 

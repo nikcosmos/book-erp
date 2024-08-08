@@ -2,10 +2,13 @@
 import type { UserItem } from '@/shared/services/user/model'
 import UserEdit from './UserEdit.vue'
 import { useUserStore } from '../store'
+import useUserPerms from '../perms'
 
 const props = defineProps<{ user: UserItem }>()
 
 const userStore = useUserStore()
+
+const { isCanEdit, isCanDelete } = useUserPerms()
 </script>
 
 <template>
@@ -15,8 +18,14 @@ const userStore = useUserStore()
       <span>{{ props.user.role }}</span>
     </div>
     <div class="card__actions">
-      <UserEdit :user="props.user" />
-      <button type="button" @click="userStore.deleteUser(props.user.id)">Delete</button>
+      <UserEdit v-if="isCanEdit(props.user.role)" :user="props.user" />
+      <button
+        v-if="isCanDelete(props.user.role)"
+        type="button"
+        @click="userStore.deleteUser(props.user.id)"
+      >
+        Delete
+      </button>
     </div>
   </div>
 </template>
