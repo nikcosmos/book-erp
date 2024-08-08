@@ -28,8 +28,8 @@ async function submitLogin() {
   <div class="login">
     <h1 class="login__title">Login</h1>
     <form class="login__form" @submit.prevent="submitLogin">
-      <UIInput type="text" name="login" v-model="login" />
-      <UIInput type="password" name="password" v-model="password" />
+      <UIInput required type="text" name="login" v-model="login" />
+      <UIInput required type="password" name="password" v-model="password" />
       <UIButton type="submit">Enter</UIButton>
     </form>
   </div>
