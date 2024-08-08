@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { BookItem } from '@/shared/services/book/model'
-import UIModal from '@/shared/ui/UIModal.vue'
 import { ref } from 'vue'
 import { useBookStore } from '../store'
+import { UIButton, UIInput, UIModal, UITextArea } from '@/shared/ui'
 
 const props = defineProps<{ book: BookItem }>()
 
@@ -29,20 +29,35 @@ function submitHandler() {
 </script>
 
 <template>
-  <button type="button" @click="isOpen = true">Edit</button>
+  <UIButton type="button" @click="isOpen = true">Edit</UIButton>
   <UIModal class="edit-modal" :is-open="isOpen" @onClose="isOpen = false">
+    <div class="edit-modal__top">
+      <h4 class="edit-modal__top-title">Edit Book</h4>
+      <UIButton type="button" @click="isOpen = false">Close</UIButton>
+    </div>
     <form class="edit-modal__form" @submit.prevent="submitHandler">
-      <input type="text" name="title" v-model="title" />
-      <input type="text" name="description" v-model="description" />
-      <input type="text" name="author" v-model="author" />
-      <input type="date" name="data" v-model="data" />
-      <button type="submit">Edit</button>
+      <UIInput type="text" name="title" v-model="title" />
+      <UIInput type="text" name="author" v-model="author" />
+      <UIInput type="date" name="data" v-model="data" />
+      <UITextArea type="text" name="description" v-model="description" />
+      <UIButton type="submit">Edit</UIButton>
     </form>
   </UIModal>
 </template>
 
 <style lang="scss" scoped>
 .edit-modal {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__top-title {
+    font-size: 20px;
+  }
+
   &__form {
     display: flex;
     flex-direction: column;

@@ -1,19 +1,32 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { UIInput } from '@/shared/ui'
+import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { debounce } from 'lodash'
 const route = useRoute()
 const router = useRouter()
 
-const search = ref('')
+const search = ref<string>('')
 if (route.query.search) search.value = String(route.query.search)
+
 const changeHandler = () =>
   router.replace({
-    query: { search: search.value || undefined }
+    query: { ...route.query, search: search.value || undefined }
   })
+const debouncedChangeHandler = debounce(changeHandler, 500)
+watch(search, debouncedChangeHandler)
 </script>
 
 <template>
-  <input type="search" v-model="search" @input="changeHandler" />
+  <label class="search">
+    <UIInput type="search" placeholder="Search" v-model="search" />
+  </label>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+</style>

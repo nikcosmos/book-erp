@@ -3,6 +3,9 @@ import { UserRole } from '@/shared/consts/user'
 import { useAuthStore } from '@/shared/store/auth'
 import { ref } from 'vue'
 import { useBookStore } from '../store'
+import { UIInput, UIButton, UITextArea, UIModal } from '@/shared/ui'
+
+const isOpen = ref<boolean>(false)
 
 const authStore = useAuthStore()
 const bookStore = useBookStore()
@@ -28,17 +31,22 @@ function resetForm() {
   description.value = ''
   author.value = ''
   data.value = ''
+
+  isOpen.value = false
 }
 </script>
 
 <template>
-  <form class="form" @submit.prevent="submitHandler">
-    <input type="text" name="title" v-model="title" />
-    <input type="text" name="description" v-model="description" />
-    <input type="text" name="author" v-model="author" />
-    <input type="date" name="data" v-model="data" />
-    <button type="submit">Add</button>
-  </form>
+  <UIButton type="button" @click="isOpen = true">Add Book</UIButton>
+  <UIModal :is-open="isOpen" @onClose="isOpen = false">
+    <form class="form" @submit.prevent="submitHandler">
+      <UIInput type="text" name="title" placeholder="Name" v-model="title" />
+      <UIInput type="text" name="author" placeholder="Author" v-model="author" />
+      <UIInput type="date" name="data" placeholder="Data" v-model="data" />
+      <UITextArea name="description" placeholder="Description" v-model="description" />
+      <UIButton type="submit">Add</UIButton>
+    </form>
+  </UIModal>
 </template>
 
 <style lang="scss" scoped>

@@ -9,7 +9,10 @@ import BookSorting from '@/feature/book/ui/BookSorting.vue'
 <template>
   <UiContainer>
     <div class="book-page">
-      <BookAddForm />
+      <div class="book-page__head">
+        <h1 class="book-page__title">Books</h1>
+        <BookAddForm />
+      </div>
       <div class="book-page__actions">
         <BookSearch />
         <BookSorting />
@@ -25,9 +28,22 @@ import BookSorting from '@/feature/book/ui/BookSorting.vue'
   flex-direction: column;
   gap: 20px;
 
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-size: 24px;
+  }
+
   &__actions {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 }
 </style>
