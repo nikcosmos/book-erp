@@ -7,10 +7,13 @@ defineEmits(['onClose'])
 watch(
   () => props.isOpen,
   (isOpen) => {
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
     if (isOpen) {
       document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = `${scrollbarWidth}px`
     } else {
       document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
     }
   }
 )
