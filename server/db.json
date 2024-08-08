@@ -5,16 +5,50 @@
       "login": "admin",
       "password": "admin",
       "role": "admin"
+    },
+    {
+      "login": "mentor",
+      "password": "mentor",
+      "role": "mentor",
+      "id": 2
+    },
+    {
+      "login": "user",
+      "password": "user",
+      "role": "user",
+      "id": 3
+    },
+    {
+      "login": "admin2",
+      "password": "admin2",
+      "role": "admin",
+      "id": 4
     }
   ],
   "books": [
     {
-      "id": 1,
-      "title": "Book Title",
-      "author": "Book author",
-      "description": "Book d",
-      "data": "10-2010-12",
-      "creator": "user"
+      "title": "UserBook",
+      "author": "",
+      "description": "",
+      "data": "",
+      "creator": "user",
+      "id": 5
+    },
+    {
+      "title": "AdminBook",
+      "author": "",
+      "description": "",
+      "data": "",
+      "creator": "admin",
+      "id": 6
+    },
+    {
+      "title": "MentorBook",
+      "author": "",
+      "description": "",
+      "data": "",
+      "creator": "mentor",
+      "id": 7
     }
   ]
 }
