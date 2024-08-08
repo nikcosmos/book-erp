@@ -5,7 +5,7 @@ import { readFileSync } from 'fs'
 const loginController = (req, res) => {
   const { login, password } = req.body
   if (!isAuthenticated({ login, password })) {
-    const status = 401
+    const status = 404
     const message = 'Incorrect login or password'
     res.status(status).json({ status, message })
     return
