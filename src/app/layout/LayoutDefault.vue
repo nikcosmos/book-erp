@@ -19,5 +19,6 @@ import WidgetHeader from '@/widgets/WidgetHeader.vue'
 }
 .main {
   flex: 1 1 auto;
+  margin: 20px 0px;
 }
 </style>
