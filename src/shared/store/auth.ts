@@ -12,7 +12,7 @@ interface AuthStore {
   signOut: () => void
 }
 
-export const useAuthStore = defineStore('user', (): AuthStore => {
+export const useAuthStore = defineStore('auth', (): AuthStore => {
   const router = useRouter()
   const isAuth = ref<boolean>(false)
   const userInfo = ref<UserInfo | null>(null)
